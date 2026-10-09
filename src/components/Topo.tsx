@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { perfil } from "@/data/conteudo";
 import BotaoTema from "./BotaoTema";
 import Container from "./Container";
-import LetrasRecortadas, { letrasMonograma } from "./LetrasRecortadas";
+import Logo from "./Logo";
 
 const itensMenu = [
   { rotulo: "Sobre", href: "#sobre" },
@@ -47,7 +47,7 @@ export default function Topo() {
           className="no-underline transition-transform hover:-rotate-3"
           onClick={() => setMenuAberto(false)}
         >
-          <LetrasRecortadas letras={letrasMonograma} tamanho="text-[26px]" />
+          <Logo className="block size-10" />
         </a>
 
         <nav aria-label="Menu principal" className="flex items-center gap-3 lg:gap-8">

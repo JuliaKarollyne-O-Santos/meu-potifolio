@@ -1,7 +1,7 @@
 import { perfil } from "@/data/conteudo";
 import Container from "./Container";
+import Logo from "./Logo";
 import FitaListrada from "./FitaListrada";
-import LetrasRecortadas, { letrasMonograma } from "./LetrasRecortadas";
 
 export default function Rodape() {
   return (
@@ -9,7 +9,7 @@ export default function Rodape() {
       <FitaListrada />
       <Container className="flex flex-wrap items-center justify-between gap-6 py-10">
         <div className="flex items-center gap-4">
-          <LetrasRecortadas letras={letrasMonograma} tamanho="text-[30px]" />
+          <Logo className="block size-11" />
           <div className="text-sm leading-relaxed">
             <strong className="block font-semibold text-white">{perfil.nomeCompleto}</strong>
             Feito com Next.js, TypeScript e Tailwind · {new Date().getFullYear()}
