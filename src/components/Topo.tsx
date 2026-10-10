@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { perfil } from "@/data/conteudo";
 import BotaoTema from "./BotaoTema";
 import Container from "./Container";
+import FitaListrada from "./FitaListrada";
 import Logo from "./Logo";
 
 const itensMenu = [
@@ -16,10 +17,10 @@ const itensMenu = [
 
 /** Linha que cresce embaixo do link ao passar o mouse */
 const sublinhado =
-  "relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:rounded-full after:bg-destaque after:transition-transform after:duration-300 hover:after:scale-x-100";
+  "relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:rounded-full after:bg-tiffany after:transition-transform after:duration-300 hover:after:scale-x-100";
 
 export default function Topo() {
-  // Transparente em cima do banner; ganha fundo quando a página rola
+  // Fundo azul-marinho com a fita listrada, igual ao rodapé; ganha sombra quando a página rola
   const [rolou, setRolou] = useState(false);
   const [menuAberto, setMenuAberto] = useState(false);
 
@@ -34,10 +35,8 @@ export default function Topo() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ${
-        solido
-          ? "border-linha bg-fundo/85 shadow-[0_10px_30px_-20px_rgba(10,25,45,0.5)] backdrop-blur-md"
-          : "border-transparent bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 bg-marinho text-[#c9d7e8] transition-shadow duration-300 dark:bg-[#0a1830] ${
+        solido ? "shadow-[0_12px_30px_-16px_rgba(10,25,45,0.6)]" : ""
       }`}
     >
       <Container className="flex h-[72px] items-center justify-between gap-4">
@@ -54,7 +53,7 @@ export default function Topo() {
           <ul className="m-0 hidden list-none items-center gap-8 p-0 lg:flex">
             {itensMenu.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className={`text-[15px] font-semibold text-tinta no-underline hover:text-tinta ${sublinhado}`}>
+                <a href={item.href} className={`text-[15px] font-semibold text-white no-underline hover:text-tiffany ${sublinhado}`}>
                   {item.rotulo}
                 </a>
               </li>
@@ -66,7 +65,7 @@ export default function Topo() {
           <a
             href={perfil.links.curriculo}
             download="Curriculo-Julia-Karollyne.pdf"
-            className="hidden rounded-full border-[1.5px] border-tinta px-[18px] py-2 text-[15px] font-semibold text-tinta no-underline transition hover:bg-marinho hover:text-white sm:inline-block dark:hover:bg-tiffany dark:hover:text-marinho"
+            className="hidden rounded-full border-[1.5px] border-white/80 px-[18px] py-2 text-[15px] font-semibold text-white no-underline transition hover:border-tiffany hover:bg-tiffany hover:text-marinho sm:inline-block"
           >
             Currículo
           </a>
@@ -78,7 +77,7 @@ export default function Topo() {
             aria-expanded={menuAberto}
             aria-controls="menu-celular"
             aria-label={menuAberto ? "Fechar menu" : "Abrir menu"}
-            className="grid size-10 cursor-pointer place-items-center rounded-full border-[1.5px] border-tinta/70 bg-superficie/60 text-tinta lg:hidden"
+            className="grid size-10 cursor-pointer place-items-center rounded-full border-[1.5px] border-white/70 bg-white/10 text-white lg:hidden"
           >
             <span className="relative block h-3.5 w-[18px]">
               <span
@@ -110,14 +109,14 @@ export default function Topo() {
       >
         <div className="overflow-hidden" aria-hidden={!menuAberto}>
           <Container className="pb-6">
-            <ul className="m-0 list-none border-t border-dashed border-linha p-0 pt-3">
+            <ul className="m-0 list-none border-t border-dashed border-white/25 p-0 pt-3">
               {itensMenu.map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}
                     onClick={() => setMenuAberto(false)}
                     tabIndex={menuAberto ? 0 : -1}
-                    className="block py-3 font-serif text-[24px] text-tinta no-underline"
+                    className="block py-3 font-serif text-[24px] text-white no-underline hover:text-tiffany"
                   >
                     {item.rotulo}
                   </a>
@@ -128,7 +127,7 @@ export default function Topo() {
                   href={perfil.links.curriculo}
                   download="Curriculo-Julia-Karollyne.pdf"
                   tabIndex={menuAberto ? 0 : -1}
-                  className="mt-2 inline-block rounded-full bg-marinho px-5 py-2.5 font-semibold text-white no-underline dark:bg-tiffany dark:text-marinho"
+                  className="mt-2 inline-block rounded-full bg-tiffany px-5 py-2.5 font-semibold text-marinho no-underline"
                 >
                   Baixar currículo
                 </a>
@@ -137,6 +136,9 @@ export default function Topo() {
           </Container>
         </div>
       </div>
+
+      {/* Fita listrada embaixo, igual à do rodapé */}
+      <FitaListrada />
     </header>
   );
 }
